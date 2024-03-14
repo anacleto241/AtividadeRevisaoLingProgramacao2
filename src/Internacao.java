@@ -1,6 +1,6 @@
 public class Internacao {
 
-    private String dataInternacao, dataAlta, motivoInternacao;
+    private String motivoInternacao;
     private int idInternacao=0, diasInternados, totalInterncoes;
     private double valorDiaInterncao, valorTotal;
     private Paciente paciente;
@@ -14,9 +14,7 @@ public class Internacao {
         this.enfermeiro = enfermeiro;
         this.idInternacao++;
     }
-    public Internacao(String dataInternacao, String dataAlta, String motivoInternacao, int diasInternados, Paciente paciente, Medico medico, Enfermeiro enfermeiro, double valorDiaInterncao) {
-        this.dataInternacao = dataInternacao;
-        this.dataAlta = dataAlta;
+    public Internacao( String motivoInternacao, int diasInternados, Paciente paciente, Medico medico, Enfermeiro enfermeiro, double valorDiaInterncao) {
         this.motivoInternacao = motivoInternacao;
         this.idInternacao++;
         this.diasInternados = diasInternados;
@@ -24,27 +22,12 @@ public class Internacao {
         this.medico = medico;
         this.enfermeiro = enfermeiro;
         this.valorDiaInterncao = valorDiaInterncao;
-        atualizaValorTotalInternacao();
+        this.atualizaValorTotalInternacao();
     }
 
     public Internacao(String idInternacao){
         totalInterncoes++;
         this.idInternacao = this.totalInterncoes + 1;
-    }
-    public String getDataInternacao() {
-        return dataInternacao;
-    }
-
-    public void setDataInternacao(String dataInternacao) {
-        this.dataInternacao = dataInternacao;
-    }
-
-    public String getDataAlta() {
-        return dataAlta;
-    }
-
-    public void setDataAlta(String dataAlta) {
-        this.dataAlta = dataAlta;
     }
 
     public String getMotivoInternacao() {
@@ -117,7 +100,7 @@ public class Internacao {
 
     public void atualizaValorTotalInternacao(){
         this.valorTotal = this.valorDiaInterncao * this.diasInternados;
-        paciente.ValorTotalInternacoes(this.getValorTotal());
+        this.paciente.ValorTotalInternacoes(this.getValorTotal());
     }
 }
 

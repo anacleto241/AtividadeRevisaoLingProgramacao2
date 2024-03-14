@@ -14,12 +14,18 @@ public class Teste {
         System.out.println("Valor total de todas as internacoes: " + internacao.getPaciente().getValorTotalInternacoes());
     }
 
-        public static void ScannerInternacao(){
+        public static void ScannerInternacao(Internacao internacao){
         Scanner scanner = new Scanner(System.in);
-            System.out.println("Digite a data de entrada: ");
-            String dataEntrada = scanner.nextLine();
-            System.out.println("Digite a data de saída: ");
-            String dataSaida = scanner.nextLine();
+            System.out.println("Digite o motivo da internação: ");
+            String motivo = scanner.nextLine();
+            internacao.setMotivoInternacao(motivo);
+            System.out.println("Digite o número de dias internados: ");
+            int dias = scanner.nextInt();
+            internacao.setDiasInternados(dias);
+            System.out.println("Digite o valor diário da internação: ");
+            double valor = scanner.nextDouble();
+            internacao.setValorDiaInterncao(valor);
+            internacao.atualizaValorTotalInternacao();
         }
     public static void main(String[] args) {
 
@@ -28,9 +34,12 @@ public class Teste {
         Paciente paciente = new Paciente("Maria", "987.654.321-00", "9876-5432", 30, "Unimed");
         Medico medico = new Medico("José", "111.222.333-44", "1111-2222", 40, "1234", "CRM1234", "Cardiologista");
 
-        Internacao internacao = new Internacao("01/01/2021", "10/01/2021", "Dor no peito", 10, paciente, medico, enfermeiro, 100);
-        Internacao internacao2 = new Internacao("02/01/2021", "11/01/2021", "Dor de cabeça", 9, paciente, medico, enfermeiro, 100);
-        Internacao internacao3 = new Internacao("03/01/2021", "12/01/2021", "Dor no pé", 8, paciente, medico, enfermeiro, 100);
+        Internacao internacao = new Internacao(paciente, medico, enfermeiro);
+        ScannerInternacao(internacao);
+        Internacao internacao2 = new Internacao(paciente, medico, enfermeiro);
+        ScannerInternacao(internacao2);
+        Internacao internacao3 = new Internacao( paciente, medico, enfermeiro);
+        ScannerInternacao(internacao3);
 
         MostrarInternacao(internacao3);
 
